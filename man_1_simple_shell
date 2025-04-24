@@ -1,0 +1,69 @@
+.TH hsh 1 "April 2025" "v1.0" "Custom UNIX Shell Manual"
+
+.SH NAME
+hsh \- a UNIX-like command interpreter
+
+.SH DESCRIPTION
+.B hsh
+is a minimalist, custom-built shell created for holberton school project. This program interprets and executes command-line input just like classic UNIX shells.
+
+The shell supports both
+.B interactive
+mode, where users can type commands directly, and
+.B non-interactive
+mode, where commands can be piped from a script or standard input.
+
+.SH FEATURES
+.TP
+\fBInteractive Mode\fR
+Reads input from the user, processes it, and executes the command in a loop until the user exits.
+
+.TP
+\fBNon-Interactive Mode\fR
+Reads input from a file or pipe, executing each line as a command.
+
+.TP
+\fBBuilt-In Commands\fR
+Currently supports:
+.BR exit
+to terminate the shell.
+
+.SH USAGE
+.TP
+Interactive:
+.B
+./hsh
+.br
+Then type your commands.
+
+.TP
+Non-interactive:
+.B
+echo "ls -l" | ./hsh
+.br
+or
+.br
+.B
+cat script.txt | ./hsh
+
+.SH RETURN VALUE
+Returns 0 on success, or appropriate error code on failure.
+
+.SH AUTHORS
+Alex A. <alex.atanasovski03@gmail.com>
+William
+Andrew
+
+.SH BUGS
+As a group project, the project only supports stated things above. More common uses such as the following are not supported:
+- Advanced built-ins like cd or export
+
+.SH SEE ALSO
+.BR sh(1),
+.BR bash(1),
+.BR execve(2),
+.BR fork(2),
+.BR wait(2)
+
+.SH NOTES
+This shell is intentionally simple to demonstrate the core concepts of process creation, command parsing, and execution in C.
