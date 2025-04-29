@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int execute_command(char *command)
+int execute_command(char **args)
 {
     pid_t pid = fork();
     int status;
