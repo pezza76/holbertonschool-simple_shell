@@ -27,3 +27,18 @@ char *strip_newline(char *line)
         line[len - 1] = '\0';
     return (line);
 }
+
+void free_tokens(char **tokens)
+{
+	int i;
+
+	if (!tokens)
+		return;
+
+	for (i = 0; tokens[i]; i++)
+	{
+		free(tokens[i]);
+	}
+
+	free(tokens);
+}
