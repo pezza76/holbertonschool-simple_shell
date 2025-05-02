@@ -2,23 +2,43 @@
 
 int execute_command(char **args)
 {
-    pid_t pid = fork();
-    int status;
+	char *command_path = NULL;
+	int status = 0;
 
-    if (pid == 0)
-    {
-        char *argv[] = {command, NULL};
-        execve(command, argv, environ);
-        perror("./hsh");
-        exit(EXIT_FAILURE);
-    }
-    else if (pid < 0)
-    {
-        perror("fork");
-    }
-    else
-    {
-        waitpid(pid, &status, 0);
-    }
-   return status; 
+
+	if (access(args[0], X_OK) == 0)
+	{
+		command_path = args[0];
+	}
+	else
+	{
+		 command_path = find_command_in_path(args[0]);
+
+		if (!command_path)
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			return 127;
+		}
+	}
+
+	pid_t pid = fork();
+	if (pid == 0)
+	{
+		execve(command_path, args, environ);
+		perror("./hsh");
+        	exit(EXIT_FAILURE);
+	}
+	else if (pid < 0)
+	{
+		perror("fork");
+	}
+	else
+	{
+	waitpid(pid, &status, 0);
+	}
+
+	if (command_path != args[0])
+		free(command_path);
+
+	return status;
 }
