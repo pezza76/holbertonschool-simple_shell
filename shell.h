@@ -12,8 +12,8 @@ extern char **environ;
 void display_prompt(void);
 char *read_line(void);
 char *strip_newline(char *line);
-int execute_command(char *command);
+int execute_command(char **args);
 
-// Function prototypes
 
-#endif /* SHELL_H */
+char *find_command_in_path(char *command);
+#endif
