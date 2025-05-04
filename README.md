@@ -7,7 +7,6 @@ A simple UNIX command-line interpreter built in C that mimics basic behavior of 
 
 - Displays a shell prompt and waits for user input
 - Tokenizes user input to extract commands and arguments
-- Executes commands found in system $PATH
 - Supports built-in commands:
     - exit — exits the shell
     - env — prints the current environment
