@@ -23,33 +23,17 @@ char **tokenize_line(char *line)
 	{
 		tokens[i++] = strdup(token);
 		if (i >= size)
-	{
-		size += 64;
-		tokens = realloc(tokens, sizeof(char *) * size);
-		if (!tokens)
 		{
-			perror("realloc");
-			exit(EXIT_FAILURE);
+			size += 64;
+			tokens = realloc(tokens, sizeof(char *) * size);
+			if (!tokens)
+			{
+				perror("realloc");
+				exit(EXIT_FAILURE);
+			}
 		}
-	}
-	token = strtok(NULL, " \t\r\n");
+		token = strtok(NULL, " \t\r\n");
 	}
 	tokens[i] = NULL;
 	return (tokens);
 }
-
-void free_tokens(char **tokens)
-{
-	int i;
-
-	if (!tokens)
-		return;
-
-	for (i = 0; tokens[i]; i++)
-	{
-		free(tokens[i]);
-	}
-
-	free(tokens);
-}
-

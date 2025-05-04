@@ -5,14 +5,13 @@ int execute_command(char **args)
 	char *command_path = NULL;
 	int status = 0;
 
-
 	if (access(args[0], X_OK) == 0)
 	{
 		command_path = args[0];
 	}
 	else
 	{
-		 command_path = find_command_in_path(args[0]);
+		command_path = find_command_in_path(args[0]);
 
 		if (!command_path)
 		{
@@ -26,7 +25,7 @@ int execute_command(char **args)
 	{
 		execve(command_path, args, environ);
 		perror("./hsh");
-        	exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid < 0)
 	{
@@ -34,7 +33,7 @@ int execute_command(char **args)
 	}
 	else
 	{
-	waitpid(pid, &status, 0);
+		waitpid(pid, &status, 0);
 	}
 
 	if (command_path != args[0])

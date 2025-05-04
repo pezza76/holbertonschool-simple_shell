@@ -30,15 +30,15 @@ char *strip_newline(char *line)
 
 void free_tokens(char **tokens)
 {
-	int i;
+    int i;
 
-	if (!tokens)
-		return;
+    if (!tokens)
+        return;
 
-	for (i = 0; tokens[i]; i++)
-	{
-		free(tokens[i]);
-	}
+    for (i = 0; tokens[i]; i++)
+    {
+        free(tokens[i]);
+    }
 
-	free(tokens);
+    free(tokens);
 }
