@@ -2,6 +2,7 @@
 
 int execute_command(char **args)
 {
+	pid_t pid;
 	char *command_path = NULL;
 	int status = 0;
 
@@ -19,8 +20,9 @@ int execute_command(char **args)
 			return 127;
 		}
 	}
+	
+	pid = fork();
 
-	pid_t pid = fork();
 	if (pid == 0)
 	{
 		execve(command_path, args, environ);
