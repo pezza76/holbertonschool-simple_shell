@@ -18,7 +18,7 @@ char **tokenize_line(char *line)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(line, " \t\r\n"); /* delimiters: space, tab, carriage return, newline */
+	token = strtok(line, " \t\r\n");
 	while (token != NULL)
 	{
 		tokens[i++] = strdup(token);
