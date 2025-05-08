@@ -66,10 +66,11 @@ void free_tokens(char **tokens)
  * handle_builtins - Handles built-in commands like exit and env
  * @args: Tokenized input
  * @line: Raw input line (used for freeing on exit)
+ * @last_status: Last command exit status
  *
  * Return: 1 if a built-in was executed, 0 otherwise
  */
-int handle_builtins(char **args, char *line)
+int handle_builtins(char **args, char *line, int last_status);
 {
 	int i;
 
@@ -80,9 +81,8 @@ int handle_builtins(char **args, char *line)
 	{
 		free_tokens(args);
 		free(line);
-		exit(0);
+		exit(last_status);
 	}
-
 	if (strcmp(args[0], "env") == 0)
 	{
 		for (i = 0; environ[i]; i++)
