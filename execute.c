@@ -6,20 +6,13 @@ int execute_command(char **args)
 	char *command_path = NULL;
 	int status = 0;
 
-	if (access(args[0], X_OK) == 0)
+	if (access(args[0], X_OK) != 0)
 	{
-		command_path = args[0];
+    		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+    		return 127;
 	}
-	else
-	{
-		command_path = find_command_in_path(args[0]);
 
-		if (!command_path)
-		{
-			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			return 127;
-		}
-	}
+command_path = args[0];
 	
 	pid = fork();
 
