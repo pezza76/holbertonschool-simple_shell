@@ -24,7 +24,6 @@ char *strip_newline(char *line)
 {
 	size_t len = strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
-		F
 			line[len - 1] = '\0';
 	return (line);
 }
