@@ -1,10 +1,18 @@
 #include "shell.h"
 
+/**
+ * display_prompt - Displays the shell prompt
+ */
 void display_prompt(void)
 {
 	write(STDOUT_FILENO, "($) ", 4);
 }
 
+/**
+ * read_line - Reads a line of input from the user
+ *
+ * Return: Pointer to the input string
+ */
 char *read_line(void)
 {
 	char *line = NULL;
@@ -20,6 +28,12 @@ char *read_line(void)
 	return (line);
 }
 
+/**
+ * strip_newline - Removes trailing newline from input
+ * @line: Input string
+ *
+ * Return: Pointer to cleaned string
+ */
 char *strip_newline(char *line)
 {
 	size_t len = strlen(line);
@@ -29,6 +43,10 @@ char *strip_newline(char *line)
 	return (line);
 }
 
+/**
+ * free_tokens - Frees a NULL-terminated array of strings
+ * @tokens: Array of strings to free
+ */
 void free_tokens(char **tokens)
 {
 	int i;
@@ -44,6 +62,13 @@ void free_tokens(char **tokens)
 	free(tokens);
 }
 
+/**
+ * handle_builtins - Handles built-in shell commands like env and exit
+ * @args: Tokenized user input
+ * @line: Input line to free if needed
+ *
+ * Return: 1 if a built-in was handled, 0 otherwise
+ */
 int handle_builtins(char **args, char *line)
 {
 	int i;
