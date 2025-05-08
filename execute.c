@@ -12,6 +12,9 @@ int execute_command(char **args)
 	char *command_path = NULL;
 	int status = 0;
 
+	if (args == NULL || args[0] == NULL)
+		return (0);
+
 	if (access(args[0], X_OK) == 0)
 	{
 		command_path = args[0];

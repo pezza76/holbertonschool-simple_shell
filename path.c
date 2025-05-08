@@ -3,14 +3,25 @@
 
 /**
  * find_command_in_path - Searches for a command in the system PATH
- * @command: Command to search for
- * Return: Full path to the command if found, otherwise NULL
+ * @command: Command name to search for
+ *
+ * Return: Full path string if found and executable, NULL otherwise
  */
 char *find_command_in_path(char *command)
 {
-	char *path = getenv("PATH");
-	char *path_copy, *dir, *full_path;
+	char *path = NULL, *path_copy, *dir, *full_path;
 	struct stat st;
+	int i = 0;
+
+	while (environ[i])
+	{
+		if (strncmp(environ[i], "PATH=", 5) == 0)
+		{
+			path = environ[i] + 5;
+			break;
+		}
+		i++;
+	}
 
 	if (!path)
 		return (NULL);
