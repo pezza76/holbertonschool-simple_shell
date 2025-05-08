@@ -34,5 +34,6 @@ command_path = args[0];
 	if (command_path != args[0])
 		free(command_path);
 
-	return status;
+	return WIFEXITED(status) ? WEXITSTATUS(status) : status;
+
 }
