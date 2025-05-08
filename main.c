@@ -3,12 +3,13 @@
 /**
  * main - Entry point of the simple shell
  *
- * Return: Always 0
+ * Return: Exit status of the last executed command
  */
 int main(void)
 {
 	char *line, *clean_line;
 	char **args = NULL;
+	int last_status = 0;
 
 	while (1)
 	{
@@ -29,11 +30,11 @@ int main(void)
 			args = tokenize_line(clean_line);
 			if (args && !handle_builtins(args, line))
 			{
-				execute_command(args);
+				last_status = execute_command(args);
 				free_tokens(args);
 			}
 		}
 		free(line);
 	}
-	return (0);
+	return (last_status);
 }

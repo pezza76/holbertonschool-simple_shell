@@ -47,5 +47,7 @@ int execute_command(char **args)
 	if (command_path != args[0])
 		free(command_path);
 
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
 	return (status);
 }
