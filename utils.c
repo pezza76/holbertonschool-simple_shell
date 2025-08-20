@@ -70,7 +70,8 @@ void free_tokens(char **tokens)
  *
  * Return: 1 if a built-in was executed, 0 otherwise
  */
-int handle_builtins(char **args, char *line, int last_status);
+/* The semicolon at the end of the next line has been removed */
+int handle_builtins(char **args, char *line, int last_status)
 {
 	int i;
 
