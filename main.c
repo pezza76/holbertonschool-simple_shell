@@ -28,7 +28,8 @@ int main(void)
 		if (*clean_line != '\0')
 		{
 			args = tokenize_line(clean_line);
-			if (args && !handle_builtins(args, line))
+			/* The fix is on the next line */
+			if (args && !handle_builtins(args, line, last_status))
 			{
 				last_status = execute_command(args);
 				free_tokens(args);
